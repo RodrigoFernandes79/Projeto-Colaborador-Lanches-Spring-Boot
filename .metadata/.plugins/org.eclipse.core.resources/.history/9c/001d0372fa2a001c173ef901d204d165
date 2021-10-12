@@ -1,0 +1,8 @@
+package br.com.mv.breakfast.controller;
+
+
+@RestController
+@RequestMapping("/colaborador")
+public class ColaboradorController {
+
+}

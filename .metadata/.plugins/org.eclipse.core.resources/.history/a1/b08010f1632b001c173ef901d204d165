@@ -1,0 +1,45 @@
+package br.com.mv.breakfast.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.mv.breakfast.domain.Colaborador;
+import br.com.mv.breakfast.domain.Item;
+import br.com.mv.breakfast.repository.ColaboradorRepository;
+import br.com.mv.breakfast.repository.ItemRepository;
+import javassist.tools.rmi.ObjectNotFoundException;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+@AllArgsConstructor
+@NoArgsConstructor
+@Service
+public class ItemService {
+	@Autowired
+	private ItemRepository repository;
+	
+	@Autowired
+	private ColaboradorRepository colaboradorRepository;
+	
+	public Object createNome(Item item) {
+		Item obj = repository.save(item);
+		return obj;
+	}
+
+
+
+	
+
+
+	
+	}
+
+
+
+
+
+	
+	
+

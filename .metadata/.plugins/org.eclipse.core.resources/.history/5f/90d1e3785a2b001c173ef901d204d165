@@ -1,0 +1,24 @@
+package br.com.mv.breakfast.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.mv.breakfast.domain.Colaborador;
+import br.com.mv.breakfast.repository.ColaboradorRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+@AllArgsConstructor
+@NoArgsConstructor
+@Service
+public class ColaboradorService {
+	@Autowired
+	private ColaboradorRepository colaboradorRepository;
+
+	
+	
+
+	public Object createNome(Colaborador colaborador) {
+		Colaborador colab =  colaboradorRepository.save(colaborador);
+		return colab;
+	}
+}

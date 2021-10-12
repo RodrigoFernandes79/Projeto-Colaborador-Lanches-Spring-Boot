@@ -1,0 +1,27 @@
+package br.com.mv.breakfast.repository;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import br.com.mv.breakfast.domain.Colaborador;
+
+
+
+
+
+
+
+@Repository
+public interface ColaboradorRepository extends JpaRepository<Colaborador,String> {
+	
+
+	
+
+	Optional<Colaborador>listarPeloNome(String nome);
+	
+	
+	
+}

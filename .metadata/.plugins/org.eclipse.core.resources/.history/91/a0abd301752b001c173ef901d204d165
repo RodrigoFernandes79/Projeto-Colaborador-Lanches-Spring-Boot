@@ -1,0 +1,37 @@
+package br.com.mv.breakfast.domain;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity(name="colaborador")
+public class Colaborador {
+	@Id
+	private String nome;
+	
+	@Column(unique=true)
+	private String cpf;
+	
+	@OneToMany(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
+	@JoinTable(name="colaborador_lanche", joinColumns =@JoinColumn(name="nome_colaborador"),
+	inverseJoinColumns=@JoinColumn(name="lanche"))
+	private Set<Item> listaItem=new HashSet<>();
+
+	
+}
