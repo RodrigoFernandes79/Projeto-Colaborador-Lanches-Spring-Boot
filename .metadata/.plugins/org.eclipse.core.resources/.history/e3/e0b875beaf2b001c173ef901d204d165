@@ -1,0 +1,82 @@
+package br.com.mv.breakfast.service;
+
+
+import java.util.Optional;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import br.com.mv.breakfast.domain.Colaborador;
+
+import br.com.mv.breakfast.repository.ColaboradorRepository;
+import javassist.tools.rmi.ObjectNotFoundException;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+@AllArgsConstructor
+@NoArgsConstructor
+@Service
+public class ColaboradorService {
+	@Autowired
+	private ColaboradorRepository colaboradorRepository;
+	
+	public Object createNome(Colaborador colaborador) {
+		Colaborador obj = colaboradorRepository.save(colaborador);
+		return obj;
+	}
+
+	public   Colaborador listarNome(String nome) throws ObjectNotFoundException {
+		Optional<Colaborador> col =  colaboradorRepository.findByNome(nome);
+		return col.orElseThrow(() 
+			-> new ObjectNotFoundException("O nome "+nome+ "não pôde ser encontrado. "+ColaboradorService.class.getName()));
+	}
+
+	public void deletarColaborador(String nome)throws ObjectNotFoundException {
+		 colaboradorRepository.findByNome(nome).orElseThrow(() -> new ObjectNotFoundException(nome));
+		colaboradorRepository.deleteByNome(nome);
+		
+		
+	}
+
+
+
+
+
+	public ResponseEntity<Colaborador> atualizarLista(String nome, Colaborador colaborador) {
+		
+		return colaboradorRepository.findByNome(nome)
+				.map(record ->{
+				record.setListaItem(colaborador.getListaItem());
+				Colaborador updated = colaboradorRepository.save(record);
+				return ResponseEntity.ok().body(updated);
+				}
+				)
+				.orElse(ResponseEntity.notFound().build());
+	}
+
+
+
+	
+
+	
+	}
+
+	
+
+	
+
+
+	
+
+
+
+
+	
+
+
+
+
+
+
+
